@@ -15,28 +15,22 @@ class main
 
     public function run()
     {
-        $this->setup();
+        error_reporting(E_ALL);
+        ini_set('display_errors', '1');
+        include "php_serial.class.php";
 
-        // Let's start the class
-        $serial = new PhpSerial;
-
-// First we must specify the device. This works on both linux and windows (if
-// your linux serial device is /dev/ttyS0 for COM1, etc)
-        $serial->deviceSet("COM1");
-
-// We can change the baud rate, parity, length, stop bits, flow control
-        $serial->confBaudRate(2400);
+        $serial = new phpSerial;
+        $serial->deviceSet("/dev/ttyAMA0");
+        $serial->confBaudRate(115200);
         $serial->confParity("none");
         $serial->confCharacterLength(8);
         $serial->confStopBits(1);
-        $serial->confFlowControl("none");
-
-// Then we need to open it
         $serial->deviceOpen();
+        $serial->sendMessage("Hello from my PHP script, say hi back!");
 
-// To write into
-        $serial->sendMessage("Hello !");
+        $serial->deviceClose();
 
+        echo "I've sended a message! \n\r";
     }
 }
 
