@@ -8,5 +8,8 @@
       "email": "david.l.vergara@gmail.com"
     }
   ],
-  "minimum-stability": "dev"
+  "minimum-stability": "dev",
+  "require": {
+    "hyperthese/php-serial": "dev-master"
+  }
 }
