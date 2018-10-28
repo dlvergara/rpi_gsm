@@ -1,0 +1,12 @@
+{
+  "name": "dlvergara/rpi_gsm",
+  "description": "PHP + rpi gsm",
+  "license": "GNU GPLv2",
+  "authors": [
+    {
+      "name": "David Vergara",
+      "email": "david.l.vergara@gmail.com"
+    }
+  ],
+  "minimum-stability": "dev"
+}
