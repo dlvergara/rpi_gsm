@@ -49,15 +49,18 @@ class main
      */
     private function write(PhpSerial $serial)
     {
-        $serial->sendMessage("AT+CMGF=1\n\r");
-        file_put_contents("CMGF_".date('Y-m-d-H-i-s').".txt", $serial->readPort());
+        //AT+CMGS="+85291234567",145<CR>This is an example for illustrating the syntax of the +CMGS AT command in SMS text mode.<Ctrl+z>
+        //$serial->sendMessage("AT+CMGS=?\n\r");//,145\n\r
+        //$serial->serialflush();
 
-        $serial->sendMessage("AT+CMGS=\"+51982841966\",\"mensaje\"\n\r");
-        file_put_contents("CMGS_".date('Y-m-d-H-i-s').".txt", $serial->readPort());
+        //$serial->sendMessage("AT+CMGF=1\n\r");
+
+        $serial->sendMessage("AT+CMGS=\"982841966\"\n\r");//,145\n\r
         sleep(1);
-
-        //$serial->sendMessage("probando\n\r");
-        //$serial->sendMessage("\x1A"); # Enable to send SMS
+        $serial->sendMessage("mensaje");
+        $serial->sendMessage("\x1A"); # Enable to send SMS
+        //$serial->sendMessage("\x1a"); # Enable to send SMS
+        file_put_contents("CMGS_".date('Y-m-d-H-i-s').".txt", $serial->readPort());
 
         //file_put_contents("CMGS2_".date('Y-m-d-H-i-s').".txt", $serial->readPort());
 
@@ -77,6 +80,9 @@ class main
         #print rcv
     }
 
+    /**
+     * Run
+     */
     public function run()
     {
         $this->setup();
